@@ -39,16 +39,16 @@ body {
 }
 
 .well h1 {
-    color: #ee4444;
+    color: #333;
     font-size: 1.3em;
 }
 
 .author {
-    color: #ee4444;
+    color: #999;
 }
 
 .author a {
-    color: #ee4444;
+    color: #999;
 }
 
 
