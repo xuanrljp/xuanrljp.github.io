@@ -8,7 +8,7 @@
             <div>
                 <h1><a href="{{ site.baseurl}}{{ page.url }}">{{ page.title }}</a></h1>
                 <p class="author">
-                  Post on {{ page.date | date: "%b %-d, %Y" }}
+                  Post on {{ page.date | date_to_string }}
                   {% if site.comments == true and page.comments == true and site.disqus != '' %}
                       <a href="#disqus_thread">评论</a>
                   {% endif %}
