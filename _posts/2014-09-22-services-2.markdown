@@ -1,0 +1,8 @@
+---
+layout: default
+img: report.png
+category: Services
+title: 豐富多彩的報表
+description: |
+---
+依照每月、每年或自訂想看的期間可以從圓餅圖中看出花費的比例。收支和淨資產趨勢圖讓您專注在自己淨值的增加，存款越來越多。

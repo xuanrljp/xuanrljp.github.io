@@ -1,0 +1,8 @@
+---
+layout: default
+img: account.png
+category: Services
+title: 帳戶資產管理<br>支援外幣
+description: |
+---
+可自訂建立多個不同類型的帳戶。支援外幣，提供帳戶之間的轉帳功能，信用卡還可以設定自動繳款。

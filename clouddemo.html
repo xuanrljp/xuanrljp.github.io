@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://cdn.apple-cloudkit.com/ck/2/cloudkit.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>Hello, world!</title>
+    <script>
+        function demoSetUpAuth() {
+
+            // Get the container.
+            var container = CloudKit.getDefaultContainer();
+
+            function gotoAuthenticatedState(userIdentity) {
+                var name = userIdentity.nameComponents;
+                if(name) {
+                    displayUserName(name.givenName + ' ' + name.familyName);
+                } else {
+                    displayUserName('User record name: ' + userIdentity.userRecordName);
+                }
+                container
+                    .whenUserSignsOut()
+                    .then(gotoUnauthenticatedState);
+            }
+
+            function gotoUnauthenticatedState(error) {
+                if(error && error.ckErrorCode === 'AUTH_PERSIST_ERROR') {
+                    showDialogForPersistError();
+                }
+
+                displayUserName('Unauthenticated User');
+                container
+                    .whenUserSignsIn()
+                    .then(gotoAuthenticatedState)
+                    .catch(gotoUnauthenticatedState);
+            }
+
+            // Check a user is signed in and render the appropriate button.
+            return container.setUpAuth()
+            .then(function(userIdentity) {
+
+                // Either a sign-in or a sign-out button was added to the DOM.
+
+                // userIdentity is the signed-in user or null.
+                if(userIdentity) {
+                gotoAuthenticatedState(userIdentity);
+                } else {
+                gotoUnauthenticatedState();
+                }
+            });
+        }
+
+        function displayUserName(name) {
+            console.log(name);
+        }
+
+        $(function() {
+            console.log( "ready!" );
+            console.log("hello");
+            CloudKit.configure({
+                locale: 'en-us',
+
+                containers: [{
+
+                    // Change this to a container identifier you own.
+                    containerIdentifier: 'iCloud.com.swalloworkstudio.AppleCoreDataCloudKitDemo2019',
+
+                    apiTokenAuth: {
+                    // And generate a web token through CloudKit Dashboard.
+                    apiToken: '69ee314d75bbe9e8112ecc0f1538fc8685ee9b7bc0c44a73d1570e8cfb5fc00f',
+
+                    persist: true, // Sets a cookie.
+
+                    signInButton: {
+                        id: 'apple-sign-in-button',
+                        theme: 'black' // Other options: 'white', 'white-with-outline'.
+                    },
+
+                    signOutButton: {
+                        id: 'apple-sign-out-button',
+                        theme: 'black'
+                    }
+                    },
+
+                    environment: 'development'
+                }]
+            }); 
+            demoSetUpAuth();
+        });
+    </script>
+  <body>
+    <h1>Hello, world!</h1>
+    
+    <div id="apple-sign-in-button"></div>
+    <div id="apple-sign-out-button"></div>
+
+  </body>
+</html>
