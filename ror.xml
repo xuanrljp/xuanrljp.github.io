@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:ror="http://rorweb.com/0.1/" >
+<channel>
+  <title>ROR Sitemap for http://tiantianjizhang-tw.swalloworkstudio.com/</title>
+  <link>http://tiantianjizhang-tw.swalloworkstudio.com/</link>
+
+<item>
+     <link>http://tiantianjizhang-tw.swalloworkstudio.com/</link>
+     <title>天天記帳</title>
+     <description>天天記帳是一款貼心的記帳APP。介面簡約大方, 分類清晰, 操作簡單, 功能齊全。支援外幣, 預算, 多帳本。天天記帳讓記帳成為習慣！</description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>0</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+</channel>
+</rss>
+  
